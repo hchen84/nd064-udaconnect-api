@@ -35,7 +35,7 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       -
-        name: Build and push
+        name: Build and push nd064-udaconnect-api
         uses: docker/build-push-action@v2
         with:
           context: .
@@ -43,3 +43,12 @@ jobs:
           platforms: linux/amd64
           push: true
           tags: hainche/nd064-udaconnect-api:latest
+      -
+        name: Build and push grpc
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: .app/grpc/Dockerfile
+          platforms: linux/amd64
+          push: true
+          tags: hainche/grpc:latest
