@@ -8,14 +8,6 @@ DB_PORT = os.environ["DB_PORT"]
 DB_NAME = os.environ["DB_NAME"]
 
 
-# DB_USERNAME = "ct_admin"
-# # DB_PASSWORD = "d293aW1zb3NlY3VyZQ=="
-# DB_PASSWORD = "wowimsosecure"
-# DB_HOST = "postgres"
-# DB_PORT = "5432"
-# DB_NAME = "geoconnections"
-
-
 class BaseConfig:
     CONFIG_NAME = "base"
     USE_MOCK_EQUIVALENCY = False
@@ -34,7 +26,6 @@ class DevelopmentConfig(BaseConfig):
     SQLALCHEMY_DATABASE_URI = (
         f"postgresql://{DB_USERNAME}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
     )
-    print(SQLALCHEMY_DATABASE_URI)
 
 
 class TestingConfig(BaseConfig):
@@ -46,7 +37,6 @@ class TestingConfig(BaseConfig):
     SQLALCHEMY_DATABASE_URI = (
         f"postgresql://{DB_USERNAME}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
     )
-    print(SQLALCHEMY_DATABASE_URI)
 
 
 class ProductionConfig(BaseConfig):
@@ -58,7 +48,6 @@ class ProductionConfig(BaseConfig):
     SQLALCHEMY_DATABASE_URI = (
         f"postgresql://{DB_USERNAME}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
     )
-    print(SQLALCHEMY_DATABASE_URI)
 
 
 EXPORT_CONFIGS: List[Type[BaseConfig]] = [
