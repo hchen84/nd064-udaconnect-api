@@ -42,4 +42,4 @@ jobs:
           file: ./Dockerfile
           platforms: linux/amd64
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/nd064-udaconnect-api:latest
+          tags: hainche/nd064-udaconnect-api:latest
