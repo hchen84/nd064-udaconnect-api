@@ -52,3 +52,12 @@ jobs:
           platforms: linux/amd64
           push: true
           tags: hainche/grpc:latest
+      -
+        name: Build and push kafka
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: ./app/kafka/Dockerfile
+          platforms: linux/amd64
+          push: true
+          tags: hainche/kafka:latest          
