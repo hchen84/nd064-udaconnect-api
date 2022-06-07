@@ -60,7 +60,7 @@ class PersonServicer(service_pb2_grpc.PersonServiceServicer):
 
 def serve():
     logging.basicConfig(
-        handlers=[logging.StreamHandler()], format="%(asctime)s.%(msecs)03d [%(levelname)s] %(message)s", level=logging.DEBUG,  datefmt="%Y-%m-%d %H:%M:%S")
+        handlers=[logging.StreamHandler()], format="%(asctime)s.%(msecs)03d [%(levelname)s] %(message)s", level=logging.INFO,  datefmt="%Y-%m-%d %H:%M:%S")
 
     logging.info("Initialize gRPC server")
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=2))
