@@ -1,10 +1,15 @@
 FROM openjdk:8-jdk-alpine3.9
-ENV KAFKA_HOME /kafka
+FROM python:3.8
+LABEL maintainer="Chen"
+
+# ENV KAFKA_HOME /kafka
 # ADD ./start-kafka.sh /scripts/
 # WORKDIR .
 
 COPY ./app/kafka /kafka
 WORKDIR /kafka
+
+RUN pip install -r requirements.txt
 
 # install some basic tools
 RUN apk add wget --no-cache curl tar bash procps
