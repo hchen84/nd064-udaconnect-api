@@ -12,14 +12,15 @@ import logging
 import json
 
 
-def get_Kafka_Server():
-    try:
-        KAFKA_SERVER = 'localhost:9092'
-        producer = KafkaProducer(bootstrap_servers=KAFKA_SERVER)
-    except:
-        KAFKA_SERVER = 'kafka-headless:9092'
-        producer = KafkaProducer(bootstrap_servers=KAFKA_SERVER)
-    return producer
+# def get_Kafka_Server():
+producer = None
+try:
+    KAFKA_SERVER = 'localhost:9092'
+    producer = KafkaProducer(bootstrap_servers=KAFKA_SERVER)
+except:
+    KAFKA_SERVER = 'kafka-headless:9092'
+    producer = KafkaProducer(bootstrap_servers=KAFKA_SERVER)
+    # return producer
 
 
 class LocationServicer(service_pb2_grpc.LocationServiceServicer):
