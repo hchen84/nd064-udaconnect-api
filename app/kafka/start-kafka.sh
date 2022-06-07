@@ -1,3 +1,4 @@
+#!/bin/bash
 KAFKA_HOME=$1
 
 # start zookeeper
