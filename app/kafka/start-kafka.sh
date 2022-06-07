@@ -11,4 +11,4 @@ $KAFKA_HOME/bin/kafka-topics.sh --create --topic person --bootstrap-server local
 # restart kafka broker
 # $KAFKA_HOME/bin/kafka-server-stop.sh
 # $KAFKA_HOME/bin/kafka-server-start.sh $KAFKA_HOME/config/server.properties &
-python -u consumer.py
+python3 -u consumer.py
