@@ -1,5 +1,5 @@
 FROM openjdk:8-jdk-alpine3.9
-ENV KAFKA_HOME /usr/local/kafka
+ENV KAFKA_HOME /kafka
 # ADD ./start-kafka.sh /scripts/
 # WORKDIR .
 
