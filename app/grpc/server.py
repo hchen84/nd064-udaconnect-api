@@ -34,7 +34,7 @@ class LocationServicer(service_pb2_grpc.LocationServiceServicer):
             "latitude": request.latitude,
             "creation_time": request.creation_time
         }
-        logging.info("location: " + request_value)
+        logging.info("location: " + json.dumps(request_value))
         data = json.dumps(request_value).encode()
         # TODO: create db with kafka
 
@@ -56,7 +56,7 @@ class PersonServicer(service_pb2_grpc.PersonServiceServicer):
             "last_name": request.last_name,
             "company_name": request.company_name,
         }
-        logging.info("person: " + request_value)
+        logging.info("person: " + json.dumps(request_value))
         # TODO: create db with kafka
         data = json.dumps(request_value).encode()
         TOPIC_NAME = 'person'
