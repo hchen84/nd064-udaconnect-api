@@ -1,5 +1,7 @@
 import imp
 import time
+import logging
+
 from concurrent import futures
 
 import grpc
@@ -25,7 +27,7 @@ class LocationServicer(service_pb2_grpc.LocationServiceServicer):
             "latitude": request.latitude,
             "creation_time": request.creation_time
         }
-        print(request_value)
+        logging.info("location: " + request_value)
         data = json.dumps(request_value).encode()
         # TODO: create db with kafka
 
@@ -47,7 +49,7 @@ class PersonServicer(service_pb2_grpc.PersonServiceServicer):
             "last_name": request.last_name,
             "company_name": request.company_name,
         }
-        print(request_value)
+        logging.info("person: " + request_value)
         # TODO: create db with kafka
         data = json.dumps(request_value).encode()
         TOPIC_NAME = 'person'
@@ -57,7 +59,10 @@ class PersonServicer(service_pb2_grpc.PersonServiceServicer):
 
 
 def serve():
-    # Initialize gRPC server
+    logging.basicConfig(
+        handlers=[logging.StreamHandler()], format="%(asctime)s.%(msecs)03d [%(levelname)s] %(message)s", level=logging.DEBUG,  datefmt="%Y-%m-%d %H:%M:%S")
+
+    logging.info("Initialize gRPC server")
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=2))
     service_pb2_grpc.add_LocationServiceServicer_to_server(
         LocationServicer(), server)
