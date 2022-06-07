@@ -1,8 +1,8 @@
 FROM python:3.8
-LABEL maintainer="Hainan Chen"
+LABEL maintainer="Chen"
 
-COPY . /app
-WORKDIR /app
+COPY ./app/grpc /grpc
+WORKDIR /grpc
 RUN pip install -r requirements.txt
 
 
