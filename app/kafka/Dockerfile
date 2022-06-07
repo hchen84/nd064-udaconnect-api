@@ -1,6 +1,5 @@
 FROM openjdk:8-jdk-alpine3.9
 
-
 LABEL maintainer="Chen"
 
 # ENV KAFKA_HOME /kafka

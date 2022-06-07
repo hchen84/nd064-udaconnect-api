@@ -1,17 +1,23 @@
 from kafka import KafkaConsumer
+import logging
 
 
 def process_topic_loaction(msg):
     print("location:", msg)
+    logging.info(msg.decode())
 
 
 def process_topic_person(msg):
     print("person:", msg)
+    logging.info(msg.decode())
 
 
 def serve():
+    logging.basicConfig(
+        handlers=[logging.StreamHandler()], format="%(asctime)s.%(msecs)03d [%(levelname)s] %(message)s", level=logging.DEBUG,  datefmt="%Y-%m-%d %H:%M:%S")
     consumer = KafkaConsumer()
     consumer.subscribe(['location', 'person'])
+    logging.info("start KafkaConsumer")
 
     func_dict = {"location": process_topic_loaction,
                  "person": process_topic_person}
