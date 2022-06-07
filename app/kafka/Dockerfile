@@ -1,10 +1,6 @@
 FROM python:3.8
 LABEL maintainer="Chen"
 
-# ENV KAFKA_HOME /kafka
-# ADD ./start-kafka.sh /scripts/
-# WORKDIR .
-
 COPY ./app/kafka /kafka
 WORKDIR /kafka
 
