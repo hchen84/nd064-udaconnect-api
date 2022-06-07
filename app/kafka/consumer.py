@@ -15,10 +15,11 @@ def process_topic_person(msg):
 def serve():
     logging.basicConfig(
         handlers=[logging.StreamHandler()], format="%(asctime)s.%(msecs)03d [%(levelname)s] %(message)s", level=logging.INFO,  datefmt="%Y-%m-%d %H:%M:%S")
-    KAFKA_SERVER = 'localhost:30005'
-    KAFKA_SERVER = 'localhost:9092'
+    # KAFKA_SERVER = 'localhost:30005'
+    # KAFKA_SERVER = 'localhost:9092'
 
-    consumer = KafkaConsumer(bootstrap_servers=KAFKA_SERVER)
+    consumer = KafkaConsumer()
+    # consumer = KafkaConsumer(bootstrap_servers=KAFKA_SERVER)
     consumer.subscribe(['location', 'person'])
     logging.info("start KafkaConsumer")
 
