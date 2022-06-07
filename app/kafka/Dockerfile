@@ -12,7 +12,8 @@ RUN apk add wget --no-cache curl tar bash procps
 
 RUN wget https://dlcdn.apache.org/kafka/3.2.0/kafka_2.13-3.2.0.tgz && \
     tar -xzf kafka_2.13-3.2.0.tgz && \
-    mv kafka_2.13-3.2.0.tgz /kafka
+    rm kafka_2.13-3.2.0.tgz
+# mv kafka_2.13-3.2.0.tgz /kafka
 
 EXPOSE 9092
-CMD ["./start-kafka.sh", "/kafka"]
+CMD ["./start-kafka.sh", "./kafka_2.13-3.2.0"]
