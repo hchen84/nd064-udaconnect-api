@@ -11,7 +11,7 @@ RUN apk add wget --no-cache curl tar bash procps
 # install kafka (pick latest stable version here)
 RUN wget https://ftp.wayne.edu/apache/kafka/2.6.0/kafka_2.13-2.6.0.tgz && \
     tar -xzf kafka_2.13-2.6.0.tgz && \
-    mv kafka_2.13-2.6.0 $KAFKA_HOME
+    mv kafka_2.13-2.6.0 /kafka
 
 EXPOSE 9092
-ENTRYPOINT ["./start-kafka.sh"]
+CMD ["./start-kafka.sh", "/kafka"]
