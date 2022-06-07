@@ -1,14 +1,22 @@
+import imp
 import time
 from concurrent import futures
 
 import grpc
 import service_pb2
 import service_pb2_grpc
+from kafka import KafkaProducer
+import logging
+import json
+
+KAFKA_SERVER = 'localhost:9092'
+producer = KafkaProducer(bootstrap_servers=KAFKA_SERVER)
 
 
 class LocationServicer(service_pb2_grpc.LocationServiceServicer):
     def Create(self, request, context):
-        print("Received a message!")
+        global producer
+        print("Received a location message!")
 
         request_value = {
             "id": request.id,
@@ -18,14 +26,20 @@ class LocationServicer(service_pb2_grpc.LocationServiceServicer):
             "creation_time": request.creation_time
         }
         print(request_value)
+        data = json.dumps(request_value).encode()
         # TODO: create db with kafka
+
+        TOPIC_NAME = 'location'
+        producer.send(TOPIC_NAME, data)
+        producer.flush()
 
         return service_pb2.LocationMessage(**request_value)
 
 
 class PersonServicer(service_pb2_grpc.PersonServiceServicer):
     def Create(self, request, context):
-        print("Received a message!")
+        global producer
+        print("Received a person message!")
 
         request_value = {
             "id": request.id,
@@ -35,7 +49,10 @@ class PersonServicer(service_pb2_grpc.PersonServiceServicer):
         }
         print(request_value)
         # TODO: create db with kafka
-
+        data = json.dumps(request_value).encode()
+        TOPIC_NAME = 'person'
+        producer.send(TOPIC_NAME, data)
+        producer.flush()
         return service_pb2.PersonMessage(**request_value)
 
 
